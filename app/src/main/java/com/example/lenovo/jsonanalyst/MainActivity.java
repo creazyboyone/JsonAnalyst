@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }catch (Exception e){
                     e.printStackTrace();
+                    handler.post(error);
                 }
 
             }
@@ -48,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
         t.start();
 
     }
+    Runnable error = new Runnable() {
+        @Override
+        public void run() {
+            Toast.makeText(
+                    MainActivity.this,
+                    "Please confirm you have connect the Internet!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
     Runnable runableUI = new Runnable() {
         @Override
         public void run() {
@@ -69,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             byte[] data = readStream(is);
             return new String(data);
         }else {
-            Toast.makeText(MainActivity.this,"Internet connect error!",Toast.LENGTH_SHORT);
+            System.out.println("return ResponseCode="+connect.getResponseCode());
         }
         return "error";
     }
