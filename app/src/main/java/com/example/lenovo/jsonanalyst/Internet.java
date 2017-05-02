@@ -1,20 +1,30 @@
 package com.example.lenovo.jsonanalyst;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import net.qiujuer.genius.blur.StackBlur;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+
 
 /**
  * Created by lenovo on 2017/4/19.
  */
 
 public class Internet {
+
+
+
+
     public String[] startAnalystJson(String json) {
         try {
             JSONTokener jsonTokener = new JSONTokener(json);
@@ -65,5 +75,18 @@ public class Internet {
         }
         return "error";
     }
+
+    public Bitmap getPhotoFromUrl(String path)throws Exception{
+        URL url = new URL(path);
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setReadTimeout(10*1000);
+        InputStream inputStream = conn.getInputStream();
+        byte[] data = readStream(inputStream);
+        Bitmap bm = BitmapFactory.decodeByteArray(data,0,data.length);
+        Bitmap bitmap = StackBlur.blurNativelyPixels(bm,17,false);
+        return bitmap;
+    }
+
 
 }

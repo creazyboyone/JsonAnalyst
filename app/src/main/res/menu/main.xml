@@ -3,6 +3,9 @@
     <item
         android:id="@+id/renew_item"
         android:title="刷新" />
-
+    <item
+        android:id="@+id/reading_item"
+        android:title="朗读"
+        />
 
 </menu>

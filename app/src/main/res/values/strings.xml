@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">JsonAnalyst</string>
+    <string name="app_name">每日一句</string>
+    <string name="Loading">正在拼命加载中......请稍后......</string>
+    <string name="NoInternet">网络不给力啊！我能怎么办？</string>
 </resources>
